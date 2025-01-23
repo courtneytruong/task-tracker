@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5vh;
+    background-color: blueviolet;
+}
+
+.list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+} 
+
+.taskForm{
+ width: 50%;
+}
+
+.taskItem {
+    width: 50%;
+}
