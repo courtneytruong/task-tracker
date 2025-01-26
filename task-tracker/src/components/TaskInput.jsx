@@ -6,7 +6,7 @@ import {
   Container,
   Row,
   Col,
-  FormGroup,
+  InputGroup,
 } from "react-bootstrap";
 
 //function for form for adding a new task to task list
@@ -29,8 +29,8 @@ export default function TaskInput({ addTask }) {
   return (
     <ListGroup.Item className="taskForm">
       <form onSubmit={handleSubmit}>
-        <FormGroup>
-          <Form.Label>New Task:</Form.Label>
+        <InputGroup>
+          <InputGroup.Text>New Task:</InputGroup.Text>
           <Form.Control
             type="text"
             placeholder="Add new task text here"
@@ -38,7 +38,8 @@ export default function TaskInput({ addTask }) {
             value={text}
             onChange={handleChange}
           />
-        </FormGroup>
+        </InputGroup>
+
         <Button variant="success" onClick={handleSubmit}>
           Add Task
         </Button>

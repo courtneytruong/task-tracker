@@ -1,8 +1,7 @@
 .header {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 5vh;
+    width: 80%;
     background-color: blueviolet;
 }
 
@@ -11,14 +10,15 @@
     justify-content: center;
     align-items: center;
     background-color: aqua;
+
 } 
 
 .taskForm{
- width: 50%;
+ width: 80%;
 }
 
-
 .taskItem {
-    width: 50%;
+    display: flex;
+    width: 80%;
 }
 
