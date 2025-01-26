@@ -29,12 +29,17 @@ export default function TaskList() {
     };
     setTasks([...tasks, newTask]);
   };
+
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
   return (
     //task list component div
     <div>
       <ListGroup className="list">
         {tasks.map((task) => (
-          <TaskItem task={task} />
+          <TaskItem task={task} deleteTask={() => deleteTask(task.id)} />
         ))}
         <TaskInput addTask={addTask} />
       </ListGroup>

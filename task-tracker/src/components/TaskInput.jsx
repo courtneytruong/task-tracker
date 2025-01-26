@@ -22,6 +22,7 @@ export default function TaskInput({ addTask }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     addTask(text);
+    setText("");
   };
 
   //new task form. submits on pressing enter or by clicking submit button
