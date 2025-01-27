@@ -30,6 +30,15 @@ export default function TaskList() {
     setTasks([...tasks, newTask]);
   };
 
+  //function for toggling complete
+  const toggleComplete = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+
   //function for deleting a task
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
@@ -42,7 +51,11 @@ export default function TaskList() {
       <ListGroup className="list">
         <TaskInput addTask={addTask} />
         {tasks.map((task) => (
-          <TaskItem task={task} deleteTask={() => deleteTask(task.id)} />
+          <TaskItem
+            task={task}
+            deleteTask={() => deleteTask(task.id)}
+            toggleComplete={toggleComplete}
+          />
         ))}
       </ListGroup>
     </div>
