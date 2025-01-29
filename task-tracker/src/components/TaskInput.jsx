@@ -1,13 +1,5 @@
 import { useState } from "react";
-import {
-  Form,
-  Button,
-  ListGroup,
-  Container,
-  Row,
-  Col,
-  InputGroup,
-} from "react-bootstrap";
+import { Form, Button, ListGroup, InputGroup } from "react-bootstrap";
 
 //function for form for adding a new task to task list
 export default function TaskInput({ addTask }) {
@@ -30,6 +22,7 @@ export default function TaskInput({ addTask }) {
     <ListGroup.Item className="taskForm">
       <form onSubmit={handleSubmit}>
         <InputGroup>
+          {/* //new task text input */}
           <InputGroup.Text>New Task:</InputGroup.Text>
           <Form.Control
             type="text"
@@ -38,11 +31,11 @@ export default function TaskInput({ addTask }) {
             value={text}
             onChange={handleChange}
           />
+          {/* //submit button */}
+          <Button variant="success" onClick={handleSubmit}>
+            Add Task
+          </Button>
         </InputGroup>
-
-        <Button variant="success" onClick={handleSubmit}>
-          Add Task
-        </Button>
       </form>
     </ListGroup.Item>
   );

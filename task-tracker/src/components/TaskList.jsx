@@ -30,7 +30,7 @@ export default function TaskList() {
     setTasks([...tasks, newTask]);
   };
 
-  //function for toggling complete
+  //function for toggling completed
   const toggleComplete = (id) => {
     setTasks(
       tasks.map((task) =>
@@ -44,9 +44,17 @@ export default function TaskList() {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
+  // function for editing a task
+  // const editTask = (edittedTask, editedTaskText) => {
+  //   console.log(editedTaskText);
+  //   console.log(edittedTask);
+  //   // setTasks(
+  //   //   tasks.map((task) => (task.id === id ? { ...task, text: text } : task))
+  //   // );
+  // };
+
   return (
     //task list component div
-
     <div>
       <ListGroup className="list">
         <TaskInput addTask={addTask} />
@@ -54,6 +62,7 @@ export default function TaskList() {
           <TaskItem
             task={task}
             deleteTask={() => deleteTask(task.id)}
+            // editTask={() => editTask()}
             toggleComplete={toggleComplete}
           />
         ))}
