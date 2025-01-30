@@ -30,19 +30,41 @@ export default function TaskList() {
     setTasks([...tasks, newTask]);
   };
 
+  //function for toggling completed
+  const toggleComplete = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+
   //function for deleting a task
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
+  //function for editing a task
+  const editTask = (editedTaskText, id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, text: editedTaskText } : task
+      )
+    );
+  };
+
   return (
     //task list component div
-
     <div>
       <ListGroup className="list">
         <TaskInput addTask={addTask} />
         {tasks.map((task) => (
-          <TaskItem task={task} deleteTask={() => deleteTask(task.id)} />
+          <TaskItem
+            task={task}
+            editTask={editTask}
+            deleteTask={() => deleteTask(task.id)}
+            toggleComplete={toggleComplete}
+          />
         ))}
       </ListGroup>
     </div>

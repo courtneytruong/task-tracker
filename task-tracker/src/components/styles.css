@@ -22,3 +22,6 @@
     width: 80%;
 }
 
+.completed {
+    text-decoration: line-through;
+}
