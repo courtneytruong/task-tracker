@@ -44,14 +44,14 @@ export default function TaskList() {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
-  // function for editing a task
-  // const editTask = (edittedTask, editedTaskText) => {
-  //   console.log(editedTaskText);
-  //   console.log(edittedTask);
-  //   // setTasks(
-  //   //   tasks.map((task) => (task.id === id ? { ...task, text: text } : task))
-  //   // );
-  // };
+  //function for editing a task
+  const editTask = (editedTaskText, id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, text: editedTaskText } : task
+      )
+    );
+  };
 
   return (
     //task list component div
@@ -61,8 +61,8 @@ export default function TaskList() {
         {tasks.map((task) => (
           <TaskItem
             task={task}
+            editTask={editTask}
             deleteTask={() => deleteTask(task.id)}
-            // editTask={() => editTask()}
             toggleComplete={toggleComplete}
           />
         ))}

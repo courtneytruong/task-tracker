@@ -12,7 +12,12 @@ import "./styles.css";
 import EditTaskForm from "./EditTaskForm";
 
 //function for component for individual task to be in a list group with other task components
-export default function TaskItem({ task, deleteTask, toggleComplete }) {
+export default function TaskItem({
+  task,
+  deleteTask,
+  toggleComplete,
+  editTask,
+}) {
   return (
     <ListGroup.Item className="taskItem" key={task.id}>
       <Container>
@@ -46,7 +51,7 @@ export default function TaskItem({ task, deleteTask, toggleComplete }) {
             </ButtonGroup>
           </Col>
         </Row>
-        <EditTaskForm task={task} />
+        <EditTaskForm editTask={editTask} task={task} />
       </Container>
     </ListGroup.Item>
   );

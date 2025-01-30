@@ -1,23 +1,19 @@
 import { useState } from "react";
 import { InputGroup, Form, Button } from "react-bootstrap";
 
-export default function EditTaskForm({ task }) {
-  const [editedTaskText, setEditedTaskText] = useState("");
+export default function EditTaskForm({ editTask, task }) {
+  const [editedText, setEditedText] = useState("");
 
   //logic for handling changes in text on edit form
-  const handleTaskTextChange = (evt) => {
-    setEditedTaskText(evt.target.value);
+  const handleTaskTextChange = (e) => {
+    setEditedText(e.target.value);
   };
 
   //logic for submitting edit form
   const handleEditSubmit = (e) => {
     e.preventDefault();
-    editTask();
-    setEditedTaskText("");
-  };
-
-  const editTask = () => {
-    console.log("ashdlkasndla");
+    editTask(editedText, task.id);
+    setEditedTask("");
   };
 
   return (
@@ -28,7 +24,7 @@ export default function EditTaskForm({ task }) {
           type="text"
           placeholder="Type Edits Here"
           aria-describedby="Edit Task"
-          value={editedTaskText}
+          value={editedText}
           onChange={handleTaskTextChange}
         />
         <Button variant="success" onClick={handleEditSubmit}>
