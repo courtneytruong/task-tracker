@@ -18,6 +18,13 @@ export default function TaskItem({
   toggleComplete,
   editTask,
 }) {
+  // state management for edit form visibility
+  const [showEditForm, setShowEditForm] = useState(false);
+
+  //toggle edit form visibility when clicking edit button
+  const handleEditButtonClick = () => {
+    setShowEditForm(!showEditForm);
+  };
   return (
     <ListGroup.Item className="taskItem" key={task.id}>
       <Container>
@@ -44,17 +51,17 @@ export default function TaskItem({
           {/*button group with edit and delete buttons */}
           <Col md={4} className="d-flex justify-content-end align-items-center">
             <ButtonGroup>
-              <Button variant="primary">Edit</Button>
+              <Button variant="primary" onClick={handleEditButtonClick}>
+                {showEditForm ? "Cancel" : ""} Edit
+              </Button>
               <Button variant="danger" onClick={deleteTask}>
                 Delete
               </Button>
             </ButtonGroup>
           </Col>
         </Row>
-        <EditTaskForm editTask={editTask} task={task} />
+        {showEditForm && <EditTaskForm editTask={editTask} task={task} />}
       </Container>
     </ListGroup.Item>
   );
 }
-
-//Todo: render edit form on edit button click
