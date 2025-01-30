@@ -13,6 +13,7 @@ const savedTasks = () => {
 
 //function for rendering a complete task list component
 export default function TaskList() {
+  //state management for setting tasks
   const [tasks, setTasks] = useState(savedTasks);
 
   //adds task to local storage
@@ -21,11 +22,12 @@ export default function TaskList() {
   }, [tasks]);
 
   //function for adding new task
-  const addTask = (taskText) => {
+  const addTask = (taskText, priority) => {
     const newTask = {
       id: Date.now(),
       text: taskText,
       completed: false,
+      priority: priority,
     };
     setTasks([...tasks, newTask]);
   };
