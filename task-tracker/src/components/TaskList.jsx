@@ -47,10 +47,12 @@ export default function TaskList() {
   };
 
   //function for editing a task
-  const editTask = (editedTaskText, id) => {
+  const editTask = (editedTaskText, id, editedPriority) => {
     setTasks(
       tasks.map((task) =>
-        task.id === id ? { ...task, text: editedTaskText } : task
+        task.id === id
+          ? { ...task, text: editedTaskText, priority: editedPriority }
+          : task
       )
     );
   };
