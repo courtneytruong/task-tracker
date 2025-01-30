@@ -13,7 +13,7 @@ export default function EditTaskForm({ editTask, task }) {
   const handleEditSubmit = (e) => {
     e.preventDefault();
     editTask(editedText, task.id);
-    setEditedTask("");
+    setEditedText("");
   };
 
   return (
