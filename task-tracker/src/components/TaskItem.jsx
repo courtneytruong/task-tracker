@@ -33,6 +33,7 @@ export default function TaskItem({
             md={7}
             className="d-flex justify-content-start align-items-center"
           >
+            {task.priority}
             {/* //toggleable checkbox for item */}
             <Form.Check
               type="checkbox"
