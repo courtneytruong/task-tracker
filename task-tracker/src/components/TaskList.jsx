@@ -4,6 +4,7 @@ import TaskItem from "./TaskItem";
 import Filter from "./Filter";
 import "./styles.css";
 import TaskInput from "./TaskInput";
+import { use } from "react";
 
 //logic for loading tasks from local storage when the app starts
 const savedTasks = () => {
@@ -32,6 +33,7 @@ export default function TaskList() {
       completed: false,
       priority: priority,
       deadline: formattedDate,
+      isOverdue: false,
     };
     setTasks([...tasks, newTask]);
   };
@@ -60,6 +62,28 @@ export default function TaskList() {
       )
     );
   };
+
+  //function to check if task is overdue
+  const checkIfOverdue = () => {
+    const updatedTasks = tasks.map((task) => {
+      //get current date and convert deadline string to date object
+      const currentDate = new Date();
+      const deadlineDate = new Date(task.deadline);
+      //compare dates and mark task as overdue
+      if (currentDate > deadlineDate) {
+        return { ...task, isOverdue: true };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+  };
+
+  useEffect(() => {
+    const initialTasks = savedTasks();
+    setTasks(initialTasks);
+    checkIfOverdue();
+  }, [tasks]);
 
   //filter tasks based on selected priority
   const filteredTasks =
