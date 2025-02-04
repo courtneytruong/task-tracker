@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Button, ListGroup, InputGroup } from "react-bootstrap";
 
 //function for form for adding a new task to task list
@@ -6,16 +6,36 @@ export default function TaskInput({ addTask }) {
   const [text, setText] = useState("");
   // state management for setting priority
   const [priority, setPriority] = useState("Low");
+  //state management for setting deadline
+  const [deadline, setDeadline] = useState();
+  //state management for setting formatted date
+  const [formattedDate, setFormattedDate] = useState("");
 
   //logic for handling changes in text on form
   const handleChange = (evt) => {
     setText(evt.target.value);
   };
 
+  //logic for handling changes in date form
+  const handleDateChange = (e) => {
+    setDeadline(e.target.value);
+  };
+
+  //parses input date and formats to MM/DD/YYYY, useEffect causes this logic to only run when deadline changes
+  useEffect(() => {
+    const date = new Date(deadline.split("-").join(", "));
+    const formattedDeadline = date.toLocaleDateString("en-US", {
+      month: "2-digit",
+      day: "2-digit",
+      year: "numeric",
+    });
+    setFormattedDate(formattedDeadline);
+  }, [deadline]);
+
   //logic for submitting form
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTask(text, priority);
+    addTask(text, priority, formattedDate);
     setText("");
   };
 
@@ -25,6 +45,7 @@ export default function TaskInput({ addTask }) {
       <form onSubmit={handleSubmit}>
         <InputGroup>
           {/* priority selector */}
+          <InputGroup.Text>Priority:</InputGroup.Text>
           <Form.Select
             value={priority}
             onChange={(e) => setPriority(e.target.value)}
@@ -43,6 +64,14 @@ export default function TaskInput({ addTask }) {
             aria-describedby="Add Task"
             value={text}
             onChange={handleChange}
+          />
+          {/*Deadline Input */}
+          <InputGroup.Text>Deadline:</InputGroup.Text>
+          <Form.Control
+            type="date"
+            aria-describedby="Add Deadline"
+            value={deadline}
+            onChange={handleDateChange}
           />
           {/* //submit button */}
           <Button variant="success" onClick={handleSubmit}>

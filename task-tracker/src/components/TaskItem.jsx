@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   ListGroup,
   Button,
@@ -17,9 +17,11 @@ export default function TaskItem({
   deleteTask,
   toggleComplete,
   editTask,
+  deadline,
 }) {
   // state management for edit form visibility
   const [showEditForm, setShowEditForm] = useState(false);
+  //state management for check if date is overdue
 
   //toggle edit form visibility when clicking edit button
   const handleEditButtonClick = () => {
@@ -48,6 +50,7 @@ export default function TaskItem({
             >
               {task.text}
             </span>
+            <span>{task.deadline}</span>
           </Col>
           {/*button group with edit and delete buttons */}
           <Col md={4} className="d-flex justify-content-end align-items-center">
