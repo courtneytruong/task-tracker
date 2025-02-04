@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   ListGroup,
   Button,
@@ -17,18 +17,20 @@ export default function TaskItem({
   deleteTask,
   toggleComplete,
   editTask,
-  deadline,
+  isOverdue,
 }) {
   // state management for edit form visibility
   const [showEditForm, setShowEditForm] = useState(false);
-  //state management for check if date is overdue
 
   //toggle edit form visibility when clicking edit button
   const handleEditButtonClick = () => {
     setShowEditForm(!showEditForm);
   };
   return (
-    <ListGroup.Item className="taskItem" key={task.id}>
+    <ListGroup.Item
+      className={task.isOverdue ? "taskItem bg-warning" : "taskItem"}
+      key={task.id}
+    >
       <Container>
         <Row>
           <Col
@@ -50,7 +52,8 @@ export default function TaskItem({
             >
               {task.text}
             </span>
-            <span>{task.deadline}</span>
+            <span>Due Date: {task.deadline}</span>
+            <span>Status: {task.isOverdue ? "Overdue" : "On Time"}</span>
           </Col>
           {/*button group with edit and delete buttons */}
           <Col md={4} className="d-flex justify-content-end align-items-center">
