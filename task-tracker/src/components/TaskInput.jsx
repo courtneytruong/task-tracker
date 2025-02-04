@@ -7,7 +7,7 @@ export default function TaskInput({ addTask }) {
   // state management for setting priority
   const [priority, setPriority] = useState("Low");
   //state management for setting deadline
-  const [deadline, setDeadline] = useState();
+  const [deadline, setDeadline] = useState("");
   //state management for setting formatted date
   const [formattedDate, setFormattedDate] = useState("");
 
