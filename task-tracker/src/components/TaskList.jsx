@@ -25,12 +25,13 @@ export default function TaskList() {
   }, [tasks]);
 
   //function for adding new task
-  const addTask = (taskText, priority) => {
+  const addTask = (taskText, priority, formattedDate) => {
     const newTask = {
       id: Date.now(),
       text: taskText,
       completed: false,
       priority: priority,
+      deadline: formattedDate,
     };
     setTasks([...tasks, newTask]);
   };
