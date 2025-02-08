@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Button, Container, Col, Row } from "react-bootstrap";
 import { RxUpdate } from "react-icons/rx";
 
@@ -7,6 +7,10 @@ export default function EditTaskForm({ editTask, task }) {
   const [editedText, setEditedText] = useState(task.text);
   //state for setting edited priority
   const [editedPriority, setEditedPriority] = useState(task.priority);
+  //state management for setting edited deadline
+  const [editedDeadline, setEditedDeadline] = useState("");
+  //state management for setting edited formatted date
+  const [editedFormattedDate, setEditedFormattedDate] = useState("");
 
   //logic for handling changes in text on edit form
   const handleTaskTextChange = (e) => {
@@ -18,10 +22,26 @@ export default function EditTaskForm({ editTask, task }) {
     setEditedPriority(e.target.value);
   };
 
+  //logic for handling changes in deadline in edit form
+  const handleTaskDeadlineChange = (e) => {
+    setEditedDeadline(e.target.value);
+  };
+
+  //parses input date and formats to MM/DD/YYYY, useEffect causes this logic to only run when deadline changes
+  useEffect(() => {
+    const date = new Date(editedDeadline.split("-").join(", "));
+    const formattedDeadline = date.toLocaleDateString("en-US", {
+      month: "2-digit",
+      day: "2-digit",
+      year: "numeric",
+    });
+    setEditedFormattedDate(formattedDeadline);
+  }, [editedDeadline]);
+
   //logic for submitting edit form
   const handleEditSubmit = (e) => {
     e.preventDefault();
-    editTask(editedText, task.id, editedPriority);
+    editTask(editedText, task.id, editedPriority, editedFormattedDate);
     setEditedText("");
     setEditedPriority("Low");
   };
@@ -50,8 +70,8 @@ export default function EditTaskForm({ editTask, task }) {
               <Form.Control
                 type="date"
                 aria-describedby="Add Deadline"
-                value={""}
-                onChange={""}
+                value={editedDeadline}
+                onChange={handleTaskDeadlineChange}
               />
             </Form.Group>
           </Col>
