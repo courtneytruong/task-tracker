@@ -1,12 +1,11 @@
-import { useState } from "react";
-import { InputGroup, Form } from "react-bootstrap";
-import TaskList from "./TaskList";
+import { Form, Container, Row } from "react-bootstrap";
+import "./styles.css";
 
 export default function Filter({ currentFilter, onFilterChange }) {
   return (
-    <div className="filter">
-      <InputGroup>
-        <InputGroup.Text>Filter by Priority:</InputGroup.Text>
+    <Container className="filter">
+      <Form.Group as={Row}>
+        <Form.Label>Filter by Priority:</Form.Label>
         <Form.Select
           aria-label="Filter"
           value={currentFilter}
@@ -17,7 +16,7 @@ export default function Filter({ currentFilter, onFilterChange }) {
           <option value="Medium">Medium</option>
           <option value="Low">Low</option>
         </Form.Select>
-      </InputGroup>
-    </div>
+      </Form.Group>
+    </Container>
   );
 }

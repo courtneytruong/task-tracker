@@ -1,32 +1,104 @@
+
+.body {
+    background-color: #C8EAD3;
+    min-height: fit-content;
+}
 .header {
+    padding-top: 20px;
+    padding-bottom: 20px;
     display: flex;
     justify-content: center;
-    width: 80%;
-    background-color: blueviolet;
+    
+}
+
+.filter {
+    padding: 5px;
+    text-align: center;
+    font-size: large;
+    font-weight:bold;
+    background-color: #B6C8A9;
 }
 
 .taskItem {
-    display: flex;
-    width: 80%;
+    background-color: #CFFFE5;
+    border-bottom: #C8EAD3 solid 1px;
+
 }
 
-.list {
+.taskItemPriority {
     display: flex;
-    justify-content: center;
     align-items: center;
-    background-color: aqua;
-
-} 
-
-.filter {
-    display: flex;
-    width: 80%;
+    justify-content: center;
 }
 
-.taskForm{
- width: 80%;
+.taskItemText {
+    display:flex;
+    align-items:center;
+    
+}
+
+.taskItemButtons {
+  display:flex;
+  align-items:center;
+  justify-content: start;
+}
+
+.taskItemOverdue {
+    background-color: #FEB55D;
+    border-bottom: #C8EAD3 solid 1px;
+}
+
+.addTaskForm {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: large;
+    font-weight:bold;
+    background-color: #B6C8A9;
+}
+
+.EditTaskForm {
+    
+    text-align: center;
+    font-size: large;
+    font-weight:bold;
+    background-color: #CFFFE5;
 }
 
 .completed {
     text-decoration: line-through;
 }
+
+.btn-primary.custom-submit-button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #BA9593;  
+    border-color: #BA9593; 
+  }
+
+  .btn-primary.custom-submit-button:hover {
+    background-color: #A06C6A;  
+    border-color: #A06C6A;   
+  }
+
+  .btn-primary.custom-edit-button {
+    background-color: #BA9593;  
+    border-color: #BA9593; 
+  }
+
+  .btn-primary.custom-edit-button:hover {
+    background-color: #A06C6A;  
+    border-color: #A06C6A;   
+  }
+
+  .btn-primary.custom-edit-submit-button {
+    margin-top: 5px;
+    margin-right: 4px;
+    width: 100%;
+    background-color: #BA9593;  
+    border-color: #BA9593; 
+  }
+
+  .btn-primary.custom-edit-submit-button:hover {
+    background-color: #A06C6A;  
+    border-color: #A06C6A;   
+  }

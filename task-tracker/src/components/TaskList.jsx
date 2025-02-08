@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import ListGroup from "react-bootstrap/ListGroup";
+import { Col, Row, Container } from "react-bootstrap";
 import TaskItem from "./TaskItem";
 import Filter from "./Filter";
 import "./styles.css";
 import TaskInput from "./TaskInput";
-import { use } from "react";
 
 //logic for loading tasks from local storage when the app starts
 const savedTasks = () => {
@@ -83,7 +82,7 @@ export default function TaskList() {
     const initialTasks = savedTasks();
     setTasks(initialTasks);
     checkIfOverdue();
-  }, [tasks]);
+  }, []);
 
   //filter tasks based on selected priority
   const filteredTasks =
@@ -91,19 +90,23 @@ export default function TaskList() {
 
   return (
     //task list component div
-    <div>
-      <ListGroup className="list">
-        <TaskInput addTask={addTask} />
-        <Filter currentFilter={filter} onFilterChange={setFilter} />
-        {filteredTasks.map((task) => (
-          <TaskItem
-            task={task}
-            editTask={editTask}
-            deleteTask={() => deleteTask(task.id)}
-            toggleComplete={toggleComplete}
-          />
-        ))}
-      </ListGroup>
-    </div>
+    <Container>
+      <Row>
+        <div>
+          <TaskInput addTask={addTask} />
+          <Filter currentFilter={filter} onFilterChange={setFilter} />
+          <Col xs={12} md={12} lg={12}>
+            {filteredTasks.map((task) => (
+              <TaskItem
+                task={task}
+                editTask={editTask}
+                deleteTask={() => deleteTask(task.id)}
+                toggleComplete={toggleComplete}
+              />
+            ))}
+          </Col>
+        </div>
+      </Row>
+    </Container>
   );
 }
