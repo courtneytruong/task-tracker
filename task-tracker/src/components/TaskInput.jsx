@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { Form, Button, ListGroup, InputGroup } from "react-bootstrap";
+import { Form, Button, Container, Col, Row } from "react-bootstrap";
+import { BsPlusCircle } from "react-icons/bs";
+import "./styles.css";
 
 //function for form for adding a new task to task list
 export default function TaskInput({ addTask }) {
@@ -41,44 +43,55 @@ export default function TaskInput({ addTask }) {
 
   //new task form. submits on pressing enter or by clicking submit button
   return (
-    <ListGroup.Item className="taskForm">
-      <form onSubmit={handleSubmit}>
-        <InputGroup>
-          {/* priority selector */}
-          <InputGroup.Text>Priority:</InputGroup.Text>
-          <Form.Select
-            value={priority}
-            onChange={(e) => setPriority(e.target.value)}
-            aria-label="Select Priority"
-          >
-            <option>Open this select menu</option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-          </Form.Select>
+    <Container className="addTaskForm">
+      <Form className="mt-1 mb-1 mx-2">
+        <Row>
           {/* //new task text input */}
-          <InputGroup.Text>New Task:</InputGroup.Text>
-          <Form.Control
-            type="text"
-            placeholder="Add new task text here"
-            aria-describedby="Add Task"
-            value={text}
-            onChange={handleChange}
-          />
+          <Col xs={12} md={12} lg={12}>
+            <Form.Group as={Row} controlId="formNewTask">
+              <Form.Label>New Task:</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Add new task text here"
+                aria-describedby="Add Task"
+                value={text}
+                onChange={handleChange}
+              />
+            </Form.Group>
+          </Col>
           {/*Deadline Input */}
-          <InputGroup.Text>Deadline:</InputGroup.Text>
-          <Form.Control
-            type="date"
-            aria-describedby="Add Deadline"
-            value={deadline}
-            onChange={handleDateChange}
-          />
-          {/* //submit button */}
-          <Button variant="success" onClick={handleSubmit}>
-            Add Task
+          <Col xs={12} md={6} lg={6} className="mt-1">
+            <Form.Group as={Row} controlId="formDeadlineSelector">
+              <Form.Label>Deadline:</Form.Label>
+              <Form.Control
+                type="date"
+                aria-describedby="Add Deadline"
+                value={deadline}
+                onChange={handleDateChange}
+              />
+            </Form.Group>
+          </Col>
+          {/* priority selector */}
+          <Col xs={12} md={6} lg={6} className="mt-1">
+            <Form.Group as={Row} controlId="formPrioritySelector">
+              <Form.Label>Priority:</Form.Label>
+              <Form.Select
+                value={priority}
+                onChange={(e) => setPriority(e.target.value)}
+                aria-label="Select Priority"
+              >
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              </Form.Select>
+            </Form.Group>
+          </Col>
+          <Button onClick={handleSubmit} className="custom-submit-button">
+            <BsPlusCircle style={{ marginRight: "3px", marginBottom: "3px" }} />
+            Submit
           </Button>
-        </InputGroup>
-      </form>
-    </ListGroup.Item>
+        </Row>
+      </Form>
+    </Container>
   );
 }
