@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Form, Button, Container, Col, Row } from "react-bootstrap";
 import { RxUpdate } from "react-icons/rx";
+import * as Yup from "yup";
 
 export default function EditTaskForm({ editTask, task }) {
   //state for setting edited text
@@ -11,6 +12,10 @@ export default function EditTaskForm({ editTask, task }) {
   const [editedDeadline, setEditedDeadline] = useState("");
   //state management for setting edited formatted date
   const [editedFormattedDate, setEditedFormattedDate] = useState("");
+  //state management for validation
+  const [editedFormData, setEditedFormData] = useState({ text: "" });
+  //state management for form errors
+  const [errors, setErrors] = useState({});
 
   //logic for handling changes in text on edit form
   const handleTaskTextChange = (e) => {
@@ -38,12 +43,50 @@ export default function EditTaskForm({ editTask, task }) {
     setEditedFormattedDate(formattedDeadline);
   }, [editedDeadline]);
 
+  // useEffect where whenever the text is changed, rerender the form and also setFormData
+  useEffect(() => {
+    setEditedFormData({
+      ...editedFormData,
+      editedText: editedText,
+      editedDeadline: editedDeadline,
+    });
+  }, [editedText, editedDeadline]);
+
   //logic for submitting edit form
-  const handleEditSubmit = (e) => {
+  const handleEditSubmit = async (e) => {
     e.preventDefault();
-    editTask(editedText, task.id, editedPriority, editedFormattedDate);
-    setEditedText("");
-    setEditedPriority("Low");
+    const isValid = await validate();
+    console.log(isValid);
+    if (isValid) {
+      editTask(editedText, task.id, editedPriority, editedFormattedDate);
+      setEditedText("");
+      setEditedPriority("Low");
+    }
+  };
+
+  //yup validation schema task input form
+  const taskInputValidation = Yup.object({
+    editedText: Yup.string().required("Text is required."),
+    editedDeadline: Yup.string()
+      .min(new Date(), "The date cannot be in the past.")
+      .required("Deadline is required."),
+  });
+  //async function for validating form
+  const validate = async () => {
+    try {
+      await taskInputValidation.validate(editedFormData, { abortEarly: false });
+      setErrors({});
+      console.log("true");
+      return true;
+    } catch (err) {
+      const errorMessages = err.inner.reduce((acc, currErr) => {
+        acc[currErr.path] = currErr.message;
+        return acc;
+      }, {});
+      setErrors(errorMessages);
+      console.log(errorMessages);
+      return false;
+    }
   };
 
   return (
@@ -60,7 +103,11 @@ export default function EditTaskForm({ editTask, task }) {
                 aria-describedby="Edit Task"
                 value={editedText}
                 onChange={handleTaskTextChange}
+                isInvalid={!!errors.editedText}
               />
+              <Form.Control.Feedback type="Invalid" className="errorMessage">
+                {errors.editedText}
+              </Form.Control.Feedback>
             </Form.Group>
           </Col>
           {/*Deadline Input */}
@@ -72,7 +119,11 @@ export default function EditTaskForm({ editTask, task }) {
                 aria-describedby="Add Deadline"
                 value={editedDeadline}
                 onChange={handleTaskDeadlineChange}
+                isInvalid={!!errors.editedDeadline}
               />
+              <Form.Control.Feedback type="Invalid" className="errorMessage">
+                {errors.editedDeadline}
+              </Form.Control.Feedback>
             </Form.Group>
           </Col>
           {/* priority selector */}

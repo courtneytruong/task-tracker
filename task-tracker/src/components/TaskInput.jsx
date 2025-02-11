@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Form, Button, Container, Col, Row } from "react-bootstrap";
 import { BsPlusCircle } from "react-icons/bs";
 import "./styles.css";
+import * as Yup from "yup";
 
 //function for form for adding a new task to task list
 export default function TaskInput({ addTask }) {
@@ -12,6 +13,10 @@ export default function TaskInput({ addTask }) {
   const [deadline, setDeadline] = useState("");
   //state management for setting formatted date
   const [formattedDate, setFormattedDate] = useState("");
+  //state management for validation
+  const [formData, setFormData] = useState({ text: "" });
+  //state management for form errors
+  const [errors, setErrors] = useState({});
 
   //logic for handling changes in text on form
   const handleChange = (evt) => {
@@ -34,11 +39,43 @@ export default function TaskInput({ addTask }) {
     setFormattedDate(formattedDeadline);
   }, [deadline]);
 
+  // useEffect where whenever the text is changed, rerender the form and also setFormData
+  useEffect(() => {
+    setFormData({ ...formData, text: text, deadline: deadline });
+  }, [text, deadline]);
+
   //logic for submitting form
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    addTask(text, priority, formattedDate);
-    setText("");
+    const isValid = await validate();
+    if (isValid) {
+      addTask(text, priority, formattedDate);
+      setText("");
+    }
+  };
+
+  //yup validation schema task input form
+  const taskInputValidation = Yup.object({
+    text: Yup.string().required("Text is required."),
+    deadline: Yup.string()
+      .min(new Date(), "The date cannot be in the past.")
+      .required("Deadline is required."),
+  });
+  //async function for validating form
+  const validate = async () => {
+    try {
+      await taskInputValidation.validate(formData, { abortEarly: false });
+      setErrors({});
+      console.log("true");
+      return true;
+    } catch (err) {
+      const errorMessages = err.inner.reduce((acc, currErr) => {
+        acc[currErr.path] = currErr.message;
+        return acc;
+      }, {});
+      setErrors(errorMessages);
+      return false;
+    }
   };
 
   //new task form. submits on pressing enter or by clicking submit button
@@ -56,7 +93,11 @@ export default function TaskInput({ addTask }) {
                 aria-describedby="Add Task"
                 value={text}
                 onChange={handleChange}
+                isInvalid={!!errors.text}
               />
+              <Form.Control.Feedback type="Invalid" className="errorMessage">
+                {errors.text}
+              </Form.Control.Feedback>
             </Form.Group>
           </Col>
           {/*Deadline Input */}
@@ -68,7 +109,11 @@ export default function TaskInput({ addTask }) {
                 aria-describedby="Add Deadline"
                 value={deadline}
                 onChange={handleDateChange}
+                isInvalid={!!errors.deadline}
               />
+              <Form.Control.Feedback type="Invalid" className="errorMessage">
+                {errors.deadline}
+              </Form.Control.Feedback>
             </Form.Group>
           </Col>
           {/* priority selector */}

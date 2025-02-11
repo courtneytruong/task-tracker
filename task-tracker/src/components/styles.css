@@ -17,6 +17,7 @@
     font-size: large;
     font-weight:bold;
     background-color: #B6C8A9;
+    caret-color: transparent;
 }
 
 .taskItem {
@@ -34,7 +35,7 @@
 .taskItemText {
     display:flex;
     align-items:center;
-    
+    caret-color: transparent;
 }
 
 .taskItemButtons {
@@ -54,6 +55,10 @@
     font-size: large;
     font-weight:bold;
     background-color: #B6C8A9;
+}
+
+.errorMessage {
+  color: #EC0B43;
 }
 
 .EditTaskForm {
