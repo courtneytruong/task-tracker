@@ -10,12 +10,11 @@
 }
 
 .homeText {
+  text-align: center;
   justify-content: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  margin-top: 50px;
   display: flex;
-  background-color: #C8EAD3;
-  min-height: fit-content;
+  background-color: #B6C8A9;
 }
 
 .header {
