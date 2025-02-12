@@ -57,7 +57,7 @@ export default function TaskInput({ addTask }) {
   //yup validation schema task input form
   const taskInputValidation = Yup.object({
     text: Yup.string().required("Text is required."),
-    deadline: Yup.string()
+    deadline: Yup.date()
       .min(new Date(), "The date cannot be in the past.")
       .required("Deadline is required."),
   });

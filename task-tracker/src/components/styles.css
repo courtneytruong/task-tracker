@@ -3,6 +3,21 @@
     background-color: #C8EAD3;
     min-height: fit-content;
 }
+
+.navbar {
+  background-color: #B6C8A9;
+  align-content: center;
+}
+
+.homeText {
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  background-color: #C8EAD3;
+  min-height: fit-content;
+}
+
 .header {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -72,6 +87,17 @@
 .completed {
     text-decoration: line-through;
 }
+
+.btn-primary.navbarCollapseButton {
+  background-color: #BA9593  !important;
+  border-color: #BA9593 !important;
+}
+
+.btn-primary.navbarCollapseButton:hover {
+  background-color: #A06C6A;  
+    border-color: #A06C6A;    
+}
+
 
 .btn-primary.custom-submit-button {
     margin-top: 5px;

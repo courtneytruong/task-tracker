@@ -1,13 +1,16 @@
-import Header from "./components/Header";
-import TaskList from "./components/TaskList";
+import Home from "./components/Home";
+import About from "./components/About";
+import TaskTracker from "./components/TaskTracker";
+import { Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
-    <div className="body w-100 vh-100">
-      <Header />
-      <TaskList />
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/TaskTracker" element={<TaskTracker />} />
+      <Route path="/about" element={<About />} />
+    </Routes>
   );
 }
 
