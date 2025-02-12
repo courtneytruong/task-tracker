@@ -17,6 +17,13 @@
   background-color: #B6C8A9;
 }
 
+
+.aboutText {
+  display: flex;
+  text-align: start;
+  background-color: #B6C8A9;
+}
+
 .header {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -131,4 +138,14 @@
   .btn-primary.custom-edit-submit-button:hover {
     background-color: #A06C6A;  
     border-color: #A06C6A;   
+  }
+
+  .custom-link {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .custom-link:hover {
+    color:#A06C6A;
   }
