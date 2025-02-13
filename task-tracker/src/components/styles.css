@@ -7,6 +7,8 @@
 .navbar {
   background-color: #B6C8A9;
   align-content: center;
+  font-family: Roboto, Helvetica, sans-serif;
+  font-size: 16pt;
 }
 
 .homeText {
@@ -15,6 +17,8 @@
   margin-top: 50px;
   display: flex;
   background-color: #B6C8A9;
+  font-family: Roboto, Helvetica, sans-serif;
+  font-size: 16pt;
 }
 
 
@@ -22,6 +26,8 @@
   display: flex;
   text-align: start;
   background-color: #B6C8A9;
+  font-family: Roboto, Helvetica, sans-serif;
+  font-size: 16pt;
 }
 
 .header {
@@ -35,22 +41,26 @@
 .filter {
     padding: 5px;
     text-align: center;
-    font-size: large;
     font-weight:bold;
     background-color: #B6C8A9;
     caret-color: transparent;
+    font-family: Roboto, Helvetica, sans-serif;
+    font-size: 16pt;
 }
 
 .taskItem {
     background-color: #CFFFE5;
     border-bottom: #C8EAD3 solid 1px;
-
+    font-family: Roboto, Helvetica, sans-serif;
+    font-size: 16pt;
 }
 
 .taskItemPriority {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: Roboto, Helvetica, sans-serif;
+    font-size: 16pt;
 }
 
 .taskItemText {
@@ -73,7 +83,8 @@
 .addTaskForm {
     margin-bottom: 20px;
     text-align: center;
-    font-size: large;
+    font-family: Roboto, Helvetica, sans-serif;
+    font-size: 16pt;
     font-weight:bold;
     background-color: #B6C8A9;
 }
@@ -85,7 +96,8 @@
 .EditTaskForm {
     
     text-align: center;
-    font-size: large;
+    font-family: Roboto, Helvetica, sans-serif;
+    font-size: 16pt;
     font-weight:bold;
     background-color: #CFFFE5;
 }
@@ -97,11 +109,14 @@
 .btn-primary.navbarCollapseButton {
   background-color: #BA9593  !important;
   border-color: #BA9593 !important;
+  font-family: Roboto, Helvetica, sans-serif;
+    font-size: 16pt;
 }
 
 .btn-primary.navbarCollapseButton:hover {
   background-color: #A06C6A;  
     border-color: #A06C6A;    
+    
 }
 
 
@@ -110,16 +125,21 @@
     margin-bottom: 5px;
     background-color: #BA9593;  
     border-color: #BA9593; 
+    font-family: Roboto, Helvetica, sans-serif;
+    font-size: 16pt;
   }
 
   .btn-primary.custom-submit-button:hover {
     background-color: #A06C6A;  
-    border-color: #A06C6A;   
+    border-color: #A06C6A; 
+
   }
 
   .btn-primary.custom-edit-button {
     background-color: #BA9593;  
     border-color: #BA9593; 
+    font-family: Roboto, Helvetica, sans-serif;
+    font-size: 16pt;
   }
 
   .btn-primary.custom-edit-button:hover {
@@ -139,6 +159,7 @@
     background-color: #A06C6A;  
     border-color: #A06C6A;   
   }
+
 
   .custom-link {
     color: black;

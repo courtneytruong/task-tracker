@@ -6,46 +6,6 @@ export default function About() {
   return (
     <div className="body w-100 vh-100">
       <NavBar />
-      {/* <Container className="homeText">
-        <h1>About Task Tracker</h1>
-      </Container>
-      <Container className="aboutText">
-        <div>
-          <p>
-            <a
-              href="https://github.com/courtneytruong"
-              target="_blank"
-              className="custom-link"
-            >
-              <FaGithub style={{ marginRight: "3px", marginBottom: "3px" }} />
-              Courtney Truong
-            </a>
-          </p>
-          <p>
-            Task Tracker is a Reactjs app built as a capstone project for the
-            React Workshop taught by Code:You. The application is able to allow
-            users to input task details and add tasks to a list. Users are then
-            able to view tasks in the app and then check a checkmark form to
-            toggle between completed and incomplete status. When a task is
-            complete the task text will be struckthrough. Users can also make
-            edits to their tasks as well as delete tasks by clicking on the
-            appropriate buttons in each task item. When clicking on the edit
-            button an edit form opens below the task item allowing the user to
-            make edits. Data is persistant using Local Storage to save tasks.
-            Users are able to assign priority levels and Deadlines to tasks. If
-            a task is overdue the task will be highlighted with a orange
-            background. Users can also filter tasks to display tasks by priority
-            levels. The also has a responsive design to ensure that it works
-            well on both desktop and mobile devices.
-          </p>
-          <p>
-            <strong>Libraries and Npm Packages Used:</strong>
-            <br />
-            - Reactjs <br /> - React Bootstrap <br /> - React Icons <br /> -
-            React-router-dom <br /> - Yup <br /> - Vite
-          </p>
-        </div>
-      </Container> */}
       <Container className="homeText">
         <Row>
           <Col>

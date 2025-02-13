@@ -16,6 +16,7 @@ Set up:
 
 - cd into Task Tracker folder
 - npm install
+- npm run dev
 
 Libraries and Npm Packages Used:
 
