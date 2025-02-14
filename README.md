@@ -27,7 +27,7 @@ Libraries and Npm Packages Used:
 - Yup
 - Vite
 
-Deployment Link:
+Deployment Link: https://wonderful-pithivier-a202d0.netlify.app/
 
 Areas for improvement:
 
